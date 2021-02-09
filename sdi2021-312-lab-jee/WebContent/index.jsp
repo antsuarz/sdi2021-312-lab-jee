@@ -15,13 +15,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
 
-<%
-	Integer c = (Integer) application.getAttribute("contador");
-	if(c == null){
-		c = new Integer(0);
-	}
-	application.setAttribute("contador", c.intValue() + 1);
-%>
+<jsp:useBean id="contador"	class="com.uniovi.sdi.Contador"  scope="application"/>
+<jsp:setProperty name="contador" property="incremento" value="1"/>
 
 <!-- Barra de Navegación superior -->
 <nav class = "navbar navbar-default">
@@ -33,7 +28,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </ul>
 <div class = "nav navbar-right">
 
-	<%=c %> Visitas
+	<jsp:getProperty name="contador" property="total"/> Visitas
 </div>
 </div>
 </nav>
