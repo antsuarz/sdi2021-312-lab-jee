@@ -31,7 +31,7 @@ public class ServletProducto extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession	session=request.getSession();
-		HashMap<String,Float>	productos =(HashMap<String,Float>)	request.getSession().getAttribute("productos");
+		HashMap<String,Float>	productos = null;//(HashMap<String,Float>)	request.getSession().getAttribute("productos");
 		if(productos == null) {
 			productos	=	new	HashMap<String,Float>();
 			request.getSession().setAttribute("productos",	productos);

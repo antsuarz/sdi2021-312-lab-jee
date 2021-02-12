@@ -42,7 +42,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <c:forEach	var="producto"	begin="0"	items="${productosService.productos}">
 <div class="col-xs-12	col-sm-6	col-md-4	col-lg-3">
 <div>
-<img src="<c:out	value="${producto.imagen}"/>"			/>
+<img src="<c:out	value="${producto.imagen}"/>"	/>
 <div><c:out	value="${producto.nombre}"/></div>
 <a href="incluirEnCarrito?producto=<c:out	value="${producto.nombre}"/>"
 class="btn	btn-default" >
