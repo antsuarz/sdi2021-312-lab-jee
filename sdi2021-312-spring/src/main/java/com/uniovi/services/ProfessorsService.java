@@ -2,7 +2,6 @@ package com.uniovi.services;
 
 import java.util.*;
 
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +18,9 @@ public class ProfessorsService {
 	
 	
 	public List<Professor> getList(){
-		List<Professor> list = new ArrayList<Professor>();
-		profrep.findAll().forEach(list::add);
-		return list;
+		List<Professor> profList = new ArrayList<Professor>();
+		profrep.findAll().forEach(profList::add);
+		return profList;
 	}
 	
 	public Professor getProf(Long id) {
