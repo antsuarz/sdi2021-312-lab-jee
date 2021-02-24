@@ -60,4 +60,9 @@ public class MarksController {
 		return "redirect:/mark/list";
 	}
 
+	@RequestMapping("/mark/list/update")
+	public String updateList(Model model) {
+		model.addAttribute("markList", marksService.getMarks());
+		return "mark/list :: tableMarks";
+	}
 }
