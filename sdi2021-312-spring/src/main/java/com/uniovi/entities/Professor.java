@@ -17,6 +17,7 @@ public class Professor {
 	
 	
 	public Professor(Long id, String dni, String name, String surname, String course) {
+		super();
 		this.id = id;
 		this.dni = dni;
 		this.name = name;
@@ -24,6 +25,10 @@ public class Professor {
 		this.course = course;
 	}
 	
+	public Professor() {
+		super();
+	}
+
 	public Long getId() {
 		return id;
 	}

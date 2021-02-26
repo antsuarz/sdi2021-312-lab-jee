@@ -3,16 +3,24 @@ package com.uniovi.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.uniovi.entities.Professor;
 import com.uniovi.services.ProfessorsService;
+import com.uniovi.validators.SignUpProfessorValidator;
 
 @Controller
 public class ProfessorController {
 
 	@Autowired
 	private ProfessorsService profService;
+	
+	
+	@Autowired
+	private SignUpProfessorValidator supv;
+	
 	
 	@RequestMapping("/prof/list")
 	public String getList(Model model) {
@@ -21,12 +29,16 @@ public class ProfessorController {
 	}
 
 	@RequestMapping(value = "/prof/add")
-	public String getProf() {
+	public String getProf(Model model) {
+		model.addAttribute("prof", new Professor());
 		return "prof/add";
 	}
 
 	@RequestMapping(value = "/prof/add", method = RequestMethod.POST)
-	public String setProf(@ModelAttribute Professor prof) {
+	public String setProf(@Validated Professor prof, BindingResult result) {
+		supv.validate(prof, result);
+		if(result.hasErrors())
+			return "/prof/add";
 		profService.addProfessor(prof);
 		return "redirect:/prof/list";
 	}

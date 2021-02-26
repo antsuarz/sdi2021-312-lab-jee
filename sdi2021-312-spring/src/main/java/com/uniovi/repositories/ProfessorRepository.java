@@ -6,4 +6,6 @@ import com.uniovi.entities.*;
 
 public interface ProfessorRepository extends CrudRepository<Professor, Long>{
 
+	Professor findByDni(String dni);
+
 }
