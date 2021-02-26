@@ -14,21 +14,21 @@
 			<ul class="nav navbar-nav">
 				<li><a href = "/">Home</a></li>
 				<li id = "marks-menu" class="dropdown">
-					<a class = "dropdown-toggle" data-toggle="dropdown" href="#">
-						Gestión de Notas <span class= "caret"></span>
+					<a class = "dropdown-toggle" data-toggle="dropdown" href="#" th:text= #{manageMark.message}>
+						.<span class= "caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add">Agregar Nota</a></li>
-						<li><a href="/mark/list">Ver Notas</a></li>
+						<li><a href="/mark/add" th:text= #{addMark.message}></a></li>
+						<li><a href="/mark/list" th:text= #{showMark.message}></a></li>
 					</ul>
 				</li>
 				<li id = "users-menu" class="dropdown">
-					<a class = "dropdown-toggle" data-toggle="dropdown" href="#">
-						Gestión de Usuarios <span class= "caret"></span>
+					<a class = "dropdown-toggle" data-toggle="dropdown" href="#" th:text= #{manageUsers.message}>
+						. <span class= "caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add">Agregar Usuarios</a></li>
-						<li><a href="/user/list">Ver Usuarios</a></li>
+						<li><a href="/user/add" th:text= #{addUser.message}></a></li>
+						<li><a href="/user/list" th:text= #{showUser.message}></a></li>
 					</ul>
 				</li>
 			</ul>
@@ -49,6 +49,11 @@
 								th:src="@{/img/if_spain_flag.png}"
 								style="border: 0; float: left; margin-right: 15px" /> <span
 								th:text="#{language.es}">Español</span>
+						</a></li>
+						<li><a id="btnLituania" value="LT"> <img
+								th:src="@{/img/if_lit_flag.png}"
+								style="border: 0; float: left; margin-right: 15px" /> <span
+								th:text="#{language.lt}">Lituano</span>
 						</a></li>
 					</ul></li>
 

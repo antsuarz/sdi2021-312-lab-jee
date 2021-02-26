@@ -14,31 +14,7 @@
 <body>
 
 	<!-- Barra de Navegación superior -->
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<img src="/img/student-48.png" alt="logo" />
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="/mark/list">Ver Notas</a></li>
-					<li><a href="/mark/add">Agregar Nota</a></li>
-					<li><a href="/mark/filter">Filtrar</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/registrarse"><span
-							class="glyphicon glyphicon-user"></span> Registrate</a></li>
-					<li><a href="/identificarse"><span
-							class="glyphicon glyphicon-log-in"></span> Identifícate</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<nav th:replace="fragments/nav" />
 
 
 
@@ -58,8 +34,8 @@
 				<thead>
 					<tr>
 						<th class="col-md-1">id</th>
-						<th>Descripción</th>
-						<th>Puntuación</th>
+						<th th:text="#{description.message}"></th>
+						<th th:text="#{mark.message}"></th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
@@ -70,9 +46,9 @@
 						<td th:text="${mark.id}">1</td>
 						<td th:text="${mark.description}">Ejercicio 1</td>
 						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}">detalles</a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
+						<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{detail.message}"></a></td>
+						<td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{edit.message}"></a></td>
+						<td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{delete.message}"></a></td>
 					</tr>
 				</tbody>
 			</table>
