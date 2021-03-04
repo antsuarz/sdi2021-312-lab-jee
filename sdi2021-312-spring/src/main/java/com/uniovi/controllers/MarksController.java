@@ -19,16 +19,16 @@ import com.uniovi.validators.SignUpMarksValidator;
 
 @Controller
 public class MarksController {
-	
+
 	@Autowired
 	private HttpSession httpSession;
 
 	@Autowired
 	private MarksService marksService;
-	
+
 	@Autowired
 	private UsersService usersService;
-	
+
 	@Autowired
 	private SignUpMarksValidator signUpMarksValidator;
 
@@ -50,18 +50,18 @@ public class MarksController {
 //		return "redirect:/mark/list";
 //
 //	}
-	
+
 	@RequestMapping(value = "/mark/add")
 	public String getMark(Model model) {
 		model.addAttribute("usersList", usersService.getUsers());
 		model.addAttribute("mark", new Mark());
 		return "mark/add";
 	}
-	
+
 	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
 	public String setMark(@Validated Mark mark, BindingResult result) {
 		signUpMarksValidator.validate(mark, result);
-		if(result.hasErrors())
+		if (result.hasErrors())
 			return "mark/add";
 		marksService.addMark(mark);
 		return "redirect:/mark/list";
@@ -99,5 +99,17 @@ public class MarksController {
 	public String updateList(Model model) {
 		model.addAttribute("markList", marksService.getMarks());
 		return "mark/list :: tableMarks";
+	}
+
+	@RequestMapping(value = "/mark/{id}/resend", method = RequestMethod.GET)
+	public String setResendTrue(Model model, @PathVariable Long id) {
+		marksService.setMarkResend(true, id);
+		return "redirect:/mark/list";
+	}
+
+	@RequestMapping(value = "/mark/{id}/noresend", method = RequestMethod.GET)
+	public String setResendFalse(Model model, @PathVariable Long id) {
+		marksService.setMarkResend(false, id);
+		return "redirect:/mark/list";
 	}
 }
