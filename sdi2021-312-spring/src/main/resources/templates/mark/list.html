@@ -46,9 +46,12 @@
 						<td th:text="${mark.id}">1</td>
 						<td th:text="${mark.description}">Ejercicio 1</td>
 						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{detail.message}"></a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{edit.message}"></a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{delete.message}"></a></td>
+						<td><a th:href="${'/mark/details/' + mark.id}"
+							th:text="#{detail.message}"></a></td>
+						<td><a th:href="${'/mark/edit/' + mark.id}"
+							th:text="#{edit.message}"></a></td>
+						<td><a th:href="${'/mark/delete/' + mark.id}"
+							th:text="#{delete.message}"></a></td>
 					</tr>
 				</tbody>
 			</table>
