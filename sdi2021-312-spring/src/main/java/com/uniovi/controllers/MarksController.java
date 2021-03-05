@@ -116,7 +116,7 @@ public class MarksController {
 
 	@RequestMapping("/mark/list/update")
 	public String updateList(Model model, Principal principal, Pageable pageable) {
-		String dni = principal.getName(); // DNI es el name de la autenticación
+		String dni = principal.getName(); 
 		User user = usersService.getUserByDni(dni);
 		Page<Mark> marks = marksService.getMarksForUser(pageable, user); 
 		model.addAttribute("markList", marks.getContent());

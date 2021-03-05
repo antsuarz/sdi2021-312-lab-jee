@@ -1,6 +1,11 @@
 package com.uniovi.controllers;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +21,7 @@ import com.uniovi.validators.SignUpFormValidator;
 
 @Controller
 public class UsersController {
+	
 	@Autowired
 	private UsersService usersService;
 
@@ -29,8 +35,12 @@ public class UsersController {
 	private RolesService rolesService;
 
 	@RequestMapping("/user/list")
-	public String getListado(Model model) {
-		model.addAttribute("usersList", usersService.getUsers());
+	public String getListado(Model model, Principal principal, @RequestParam(value = "", required=false) String searchText) {
+		if(searchText != null && !searchText.isEmpty()) {
+			model.addAttribute("usersList", usersService.getUserByNameAndLastName(searchText));
+		}
+		else
+			model.addAttribute("usersList", usersService.getUsers());
 		return "user/list";
 	}
 
@@ -105,5 +115,6 @@ public class UsersController {
 		model.addAttribute("markList", activeUser.getMarks());
 		return "home";
 	}
+	
 
 }
