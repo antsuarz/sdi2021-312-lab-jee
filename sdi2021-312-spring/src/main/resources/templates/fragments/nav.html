@@ -31,6 +31,9 @@
 						<li><a href="/user/add" th:text=#{addUser.message}></a></li>
 						<li><a href="/user/list" th:text=#{showUser.message}></a></li>
 					</ul></li>
+				
+				<li><a href="/prof/list" th:text=#{showProf.message}></a></li>
+				<li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/prof/add" th:text=#{addProf.message}></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="

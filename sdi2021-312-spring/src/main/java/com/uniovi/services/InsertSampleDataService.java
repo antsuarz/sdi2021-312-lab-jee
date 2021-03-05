@@ -6,12 +6,16 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.uniovi.entities.Mark;
+import com.uniovi.entities.Professor;
 import com.uniovi.entities.User;
 
 @Service
 public class InsertSampleDataService {
 	@Autowired
 	private UsersService usersService;
+	
+	@Autowired
+	private ProfessorsService profService;
 
 	@Autowired
 	private RolesService rolesService;
@@ -28,9 +32,11 @@ public class InsertSampleDataService {
 		user3.setPassword("123456");
 		user3.setRole(rolesService.getRoles()[0]);
 		User user4 = new User("99999993D", "Marta", "Almonte");
+		Professor prof1 = new Professor(1L,"99999993D", "Marta", "Almonte", "SDI");
 		user4.setPassword("123456");
 		user4.setRole(rolesService.getRoles()[1]);
 		User user5 = new User("99999977E", "Pelayo", "Valdes");
+		Professor prof2 = new Professor(2L,"99999977E", "Pelayo", "Valdes", "SDI");
 		user5.setPassword("123456");
 		user5.setRole(rolesService.getRoles()[1]);
 		User user6 = new User("99999988F", "Edward", "Núñez");
@@ -77,5 +83,7 @@ public class InsertSampleDataService {
 		usersService.addUser(user4);
 		usersService.addUser(user5);
 		usersService.addUser(user6);
+		profService.addProfessor(prof1);
+		profService.addProfessor(prof2);
 	}
 }
