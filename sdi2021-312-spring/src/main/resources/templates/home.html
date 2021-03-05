@@ -13,32 +13,8 @@
 		</p>
 		<p th:text="#{manageMark.message}"></p>
 
-		<div class="table-responsive">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th class="col-md-1">id</th>
-						<th th:text="#{description.message}"></th>
-						<th th:text="#{mark.message}"></th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="mark : ${markList}">
-						<td th:text="${mark.id}">1</td>
-						<td th:text="${mark.description}"></td>
-						<td th:text="${mark.score}"></td>
-						<td><a th:href="${'/mark/details/' + mark.id}"
-							th:text="#{detail.message}"></a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}"
-							th:text="#{edit.message}"></a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}"
-							th:text="#{delete.message}"></a></td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="table-responsive" th:replace="fragments/marklist">
+			
 		</div>
 
 	</div>
