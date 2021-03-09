@@ -1,4 +1,4 @@
-package com.uniovi.test;
+package com.uniovi.tests;
 
 import static org.junit.Assert.*;
 
