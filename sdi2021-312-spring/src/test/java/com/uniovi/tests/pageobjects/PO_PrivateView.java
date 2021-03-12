@@ -1,5 +1,7 @@
 package com.uniovi.tests.pageobjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,5 +25,32 @@ public class PO_PrivateView extends PO_NavView {
 		score.sendKeys(scorep);
 		By boton = By.className("btn");
 		driver.findElement(boton).click();
+	}
+	
+	
+	static public void addAndCheckMarks(WebDriver driver, int userOrder, String descriptionp, String scorep, int page) {
+		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id, 'marks—menu')]/a");
+		elementos.get(0).click();
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'mark/add')]");
+		elementos.get(0).click();
+		fillFormAddMark(driver, userOrder, descriptionp, scorep);
+		List<WebElement> e = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
+		e.get(page).click();
+		e = PO_View.checkElement(driver, "text", descriptionp);
+	}
+	
+	static public void deleteMarkAndCHeck(WebDriver driver, String descriptionp, int page) {
+		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id, 'marks—menu')]/a");
+		elementos.get(0).click();
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'mark/list')]");
+		elementos.get(0).click();
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
+		elementos.get(page).click();
+		elementos = PO_View.checkElement(driver, "free", "//td[contains(text(), '" + descriptionp
+				+ "')]/following-sibling::*/a[contains(@href, 'mark/delete')]");
+		elementos.get(0).click();
+		List<WebElement> e = PO_View.checkElement(driver, "free", "//a[contains(@class, 'page-link')]");
+		e.get(page).click();
+		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, descriptionp, PO_View.getTimeout());
 	}
 }
